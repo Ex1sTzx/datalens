@@ -560,4 +560,86 @@
 
     #data-preview-table tr:last-child td {
       border-bottom: none;
+    }
+
+    /* ── hero section ────────────────────────────────────────────────────────── */
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 70vh;
+      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+      padding: 40px 20px;
+    }
+
+    .hero-title {
+      font-size: 3.8rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff, var(--accent-purple), var(--accent-yellow));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      width: 100%;
+      margin-bottom: 48px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-align: left;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .hero-drop-zone {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
     }
