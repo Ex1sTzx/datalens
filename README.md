@@ -1,6 +1,6 @@
 # DataLens
 
-Deployment-ready CSV analyzer with a stunning dark-mode "liquid glass" UI and powerful bivariate analysis features. 
+CSV analyzer with a stunning dark-mode "liquid glass" UI and powerful bivariate analysis features. 
 
 DataLens is designed to easily ingest, understand, and visualize datasets without requiring Python code.
 
