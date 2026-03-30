@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataLens - Analytics Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div id="loading-overlay" class="hidden">
+    <div class="spinner"></div>
+    <p>Analyzing Dataset...</p>
+  </div>
+
+  <div id="error-toast" class="hidden"></div>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="logo">DL</div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-bar">
+        <h1>DataLens Workspace</h1>
+        <button id="new-analysis-btn" class="ui-btn hidden" onclick="resetDashboard()">+ New Analysis</button>
+      </header>
+
+      <div id="upload-section" class="panel drop-zone">
+        <h2>Upload CSV Dataset</h2>
+        <p>Drag and drop your file here, or click to browse. (Max 100MB)</p>
+        <input type="file" id="file-input" accept=".csv" class="hidden" />
+      </div>
+
+      <div id="dashboard-section" class="dashboard-grid hidden">
+        <div class="kpi-card" id="kpi-rows">
+          <span class="label">Total Rows</span>
+          <span class="value">--</span>
+        </div>
+        <div class="kpi-card" id="kpi-cols">
+          <span class="label">Total Columns</span>
+          <span class="value">--</span>
+        </div>
+        <div class="kpi-card" id="kpi-missing">
+          <span class="label">Missing Cells</span>
+          <span class="value">--</span>
+        </div>
+        <div class="kpi-card" id="kpi-dupes">
+          <span class="label">Duplicate Rows</span>
+          <span class="value">--</span>
+        </div>
+
+        <div class="panel chart-panel">
+          <div class="panel-header">
+            <h2>Distributions</h2>
+            <select id="chart-col-select"></select>
+          </div>
+          <canvas id="mainChart"></canvas>
+        </div>
+
+        <div class="panel stats-panel">
+          <h2>Column Details</h2>
+          <div id="column-details-content">
+            <p class="text-muted">Select a column to view stats.</p>
+          </div>
+        </div>
+
+        <div class="panel schema-panel col-span-full">
+          <h2>Dataset Schema</h2>
+          <div class="schema-list" id="schema-list"></div>
+        </div>
+
+        <div class="panel comparison-panel col-span-full">
+          <div class="panel-header">
+            <h2>Bivariate Analysis (Compare Columns)</h2>
+            <div class="controls" style="display: flex; gap: 12px; align-items: center;">
+              <select id="compare-col-1" class="ui-select"></select>
+              <span style="color: var(--text-muted);">vs</span>
+              <select id="compare-col-2" class="ui-select"></select>
+              <button id="run-compare-btn" class="ui-btn">Analyze</button>
+            </div>
+          </div>
+          <div style="display: flex; gap: 20px;">
+            <div style="flex: 1; height: 350px; position: relative;">
+              <canvas id="compareChart"></canvas>
+            </div>
+            <div id="compare-stats" style="width: 250px; display: flex; flex-direction: column; gap: 10px;">
+              <p class="text-muted">Select two columns to view their relationship and statistical correlation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel data-preview-panel col-span-full">
+          <div class="panel-header">
+            <h2>Raw Data Preview (First 5 Rows)</h2>
+          </div>
+          <div class="table-container">
+            <table id="data-preview-table">
+              <thead><tr id="data-preview-head"></tr></thead>
+              <tbody id="data-preview-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

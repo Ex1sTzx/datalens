@@ -1,0 +1,17 @@
+# Environments
+venv/
+env/
+.venv/
+.env
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# App-specific overrides
+temp_uploads/
+
+# OS Files
+.DS_Store
+Thumbs.db
