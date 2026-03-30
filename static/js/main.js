@@ -10,26 +10,27 @@
     Chart.defaults.borderColor = '#27272a';
 
     // ── DOM refs ───────────────────────────────────────────────────────────────────
-    const uploadZone = document.getElementById('upload-section');
+    const uploadZone = document.getElementById('hero-section');
+    const dropZoneInput = document.getElementById('upload-section');
     const fileInput = document.getElementById('file-input');
     const loader = document.getElementById('loading-overlay');
     const dashboard = document.getElementById('dashboard-section');
     const errorToast = document.getElementById('error-toast');
 
     // ── drag & drop ────────────────────────────────────────────────────────────────
-    uploadZone.addEventListener('click', (e) => {
+    dropZoneInput.addEventListener('click', (e) => {
       if (e.target.tagName !== 'INPUT') fileInput.click();
     });
-    uploadZone.addEventListener('dragover', (e) => {
+    dropZoneInput.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadZone.classList.add('dragover');
+      dropZoneInput.classList.add('dragover');
     });
-    uploadZone.addEventListener('dragleave', () => {
-      uploadZone.classList.remove('dragover');
+    dropZoneInput.addEventListener('dragleave', () => {
+      dropZoneInput.classList.remove('dragover');
     });
-    uploadZone.addEventListener('drop', (e) => {
+    dropZoneInput.addEventListener('drop', (e) => {
       e.preventDefault();
-      uploadZone.classList.remove('dragover');
+      dropZoneInput.classList.remove('dragover');
       if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
     });
     fileInput.addEventListener('change', (e) => {
@@ -197,18 +198,18 @@
     }
 
     // ── reset dashboard ────────────────────────────────────────────────────────────
-    function resetDashboard() {
+    window.resetDashboard = function() {
       if (currentChart) { currentChart.destroy(); currentChart = null; }
       if (compareChartInstance) { compareChartInstance.destroy(); compareChartInstance = null; }
       globalData = null;
       currentFileId = null;
       document.getElementById('data-preview-head').innerHTML = '';
       document.getElementById('data-preview-body').innerHTML = '';
-      dashboard.classList.add('hidden');
+      document.getElementById('dashboard-section').classList.add('hidden');
       document.getElementById('new-analysis-btn').classList.add('hidden');
-      uploadZone.classList.remove('hidden');
-      fileInput.value = '';
-    }
+      document.getElementById('hero-section').classList.remove('hidden');
+      document.getElementById('file-input').value = '';
+    };
 
     // ── column details ─────────────────────────────────────────────────────────────
     function renderColumnDetails(col) {

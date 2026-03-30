@@ -31,10 +31,33 @@
         <button id="new-analysis-btn" class="ui-btn hidden" onclick="resetDashboard()">+ New Analysis</button>
       </header>
 
-      <div id="upload-section" class="panel drop-zone">
-        <h2>Upload CSV Dataset</h2>
-        <p>Drag and drop your file here, or click to browse. (Max 100MB)</p>
-        <input type="file" id="file-input" accept=".csv" class="hidden" />
+      <div id="hero-section" class="hero-container">
+        <h1 class="hero-title">Unlock the Story Hidden in Your Data</h1>
+        <p class="hero-subtitle">Instantly analyze, visualize, and drill down into any CSV without writing a single line of Python.<br>All processing happens locally in seconds.</p>
+        
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3>Lightning Fast</h3>
+            <p>Automated statistical analysis and smart type inference</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🔒</span>
+            <h3>Secure & Local</h3>
+            <p>Upload files up to 100MB straight to your private session</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📊</span>
+            <h3>Bivariate Clarity</h3>
+            <p>Deep dive into correlative trends and time-series plotting</p>
+          </div>
+        </div>
+
+        <div id="upload-section" class="panel drop-zone hero-drop-zone">
+          <h2>Get Started Now</h2>
+          <p>Drag and drop your CSV file here, or click to browse. (Max 100MB)</p>
+          <input type="file" id="file-input" accept=".csv" class="hidden" />
+        </div>
       </div>
 
       <div id="dashboard-section" class="dashboard-grid hidden">
