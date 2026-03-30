@@ -15,10 +15,11 @@ warnings.filterwarnings("ignore")
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 100 * 1024 * 1024  # 100 MB
 
-UPLOAD_FOLDER = "temp_uploads"
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
+import tempfile
 import time
+
+UPLOAD_FOLDER = os.path.join(tempfile.gettempdir(), "datalens_uploads")
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def cleanup_old_files(max_age_seconds=3600):
     """Remove files in UPLOAD_FOLDER older than max_age_seconds to prevent storage leaks."""
